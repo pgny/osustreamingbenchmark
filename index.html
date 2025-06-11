@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>osu! Streaming Benchmark</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <button class="theme-toggle" id="themeToggle" title="Toggle theme">DARK</button>
+    
+    <div class="container">
+        <h1>osu! Streaming Benchmark</h1>
+        
+        <div id="setup" class="settings">
+            <div class="setting-group">
+                <label>Select Keys (2-4 keys):</label>
+                <div class="key-selection">
+                    <button class="key-btn" data-key="z">Z</button>
+                    <button class="key-btn" data-key="x">X</button>
+                    <button class="key-btn" data-key="c">C</button>
+                    <button class="key-btn" data-key="v">V</button>
+                    <button class="key-btn" data-key="mouse1">M1</button>
+                    <button class="key-btn" data-key="mouse2">M2</button>
+                </div>
+            </div>
+
+            <div class="setting-group">
+                <label>Custom Key Mapping:</label>
+                <div class="key-selection" id="customKeys">
+                    <button class="key-btn" id="addCustomKey">+ Add Custom Key</button>
+                </div>
+            </div>
+
+            <div class="setting-group">
+                <label>Test Mode:</label>
+                <div class="mode-selection">
+                    <button class="mode-btn active" data-mode="time">Time Based</button>
+                    <button class="mode-btn" data-mode="taps">Tap Count</button>
+                </div>
+            </div>
+
+            <div class="setting-group">
+                <label id="durationModeLabel">Duration:</label>
+                <input type="number" class="duration-input" id="durationInput" placeholder="30" value="30">
+                <span id="durationLabel">seconds</span>
+            </div>
+
+            <button class="start-btn" id="startBtn" disabled>Start Benchmark</button>
+        </div>
+
+        <div id="benchmark" class="hidden">
+            <div class="active-keys" id="activeKeys"></div>
+            
+            <div class="bpm-indicator">
+                <div class="bpm-value" id="bpmValue">0</div>
+                <div>BPM</div>
+            </div>
+
+            <div class="bpm-graph">
+                <div class="graph-title">BPM Over Time</div>
+                <canvas id="bpmCanvas"></canvas>
+            </div>
+
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill"></div>
+            </div>
+
+            <div class="stats">
+                <div class="stat-card">
+                    <div class="stat-value" id="tapCount">0</div>
+                    <div class="stat-label">Taps</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="unstableRate">0</div>
+                    <div class="stat-label">Unstable Rate</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="timeElapsed">0</div>
+                    <div class="stat-label">Time (s)</div>
+                </div>
+            </div>
+
+            <button class="start-btn" id="stopBtn">Stop Test</button>
+        </div>
+
+        <div id="results" class="results hidden">
+            <h2>Test Results</h2>
+            
+            <div class="final-stats">
+                <div class="final-stat">
+                    <div class="final-stat-value" id="finalBPM">0</div>
+                    <div class="final-stat-label">Average BPM</div>
+                </div>
+                <div class="final-stat">
+                    <div class="final-stat-value" id="finalTaps">0</div>
+                    <div class="final-stat-label">Total Taps</div>
+                </div>
+                <div class="final-stat">
+                    <div class="final-stat-value" id="finalUnstable">0</div>
+                    <div class="final-stat-label">Unstable Rate</div>
+                </div>
+                <div class="final-stat">
+                    <div class="final-stat-value" id="finalDuration">0</div>
+                    <div class="final-stat-label">Duration (s)</div>
+                </div>
+            </div>
+
+            <div class="bpm-graph">
+                <div class="graph-title">Complete Performance</div>
+                <canvas id="finalBpmCanvas"></canvas>
+            </div>
+
+            <div>
+                <button class="restart-btn" id="restartBtn">Start New Test</button>
+                <button class="restart-btn" id="backToSetupBtn">Change Settings</button>
+            </div>
+        </div>
+
+        <div class="instructions">
+            <p>Select 2-4 keys, choose your test mode, and start streaming.</p>
+            <p>Holding keys won't count - you must release and press again.</p>
+            <p>M1 = Mouse Button 1  | M2 = Mouse Button 2</p>
+        </div>
+    </div>
+</body>
+</html>
